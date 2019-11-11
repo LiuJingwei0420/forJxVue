@@ -19,3 +19,6 @@ location /api/ {
 邮箱：sunnyboysoft@163.com
 发送内容：我是慕课小米商城课程同学，申请查看蓝湖权限，并提供邮箱
 
+## swiper中文文档
+https://www.swiper.com.cn/
+
