@@ -22,3 +22,5 @@ location /api/ {
 ## swiper中文文档
 https://www.swiper.com.cn/
 
+## Css3动画库
+https://daneden.github.io/animate.css/
