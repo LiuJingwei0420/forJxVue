@@ -2,7 +2,7 @@
   <div class="product">
     <product-param v-bind:title="product.name">
       <template v-slot:buy>
-        <button class="btn">立即购买</button>
+        <button class="btn" @click="buy">立即购买</button>
       </template>
     </product-param>
     <div class="content">
@@ -86,6 +86,10 @@
         this.axios.get(`/products/${id}`).then((res)=>{
           this.product = res;
         })
+      },
+      buy(){
+        let id = this.$route.params.id;
+        this.$router.push(`/detail/${id}`);
       },
       closeVideo(){
         this.showSlide='slideUp';
