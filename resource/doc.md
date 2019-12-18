@@ -23,3 +23,8 @@ https://www.swiper.com.cn/
 
 ## Css3动画库
 https://daneden.github.io/animate.css/
+
+## 微信扫码支付开发文档
+https://pay.weixin.qq.com/wiki/doc/api/index.html
+
+https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=6_5
