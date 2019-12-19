@@ -47,6 +47,7 @@
             </div>
           </div>
           <el-pagination
+            v-if="false"
             class="pagination"
             background
             layout="prev, pager, next"
@@ -55,6 +56,9 @@
             @current-change="handleChange"
             >
           </el-pagination>
+          <div class="load-more">
+              <el-button type="primary" :loading="loading" @click="loadMore">加载更多</el-button>
+          </div>
           <no-data v-if="!loading && list.length==0"></no-data>
         </div>
       </div>
@@ -65,18 +69,19 @@
   import OrderHeader from './../components/OrderHeader'
   import Loading from './../components/Loading'
   import NoData from './../components/NoData'
-  import { Pagination } from 'element-ui'
+  import { Pagination,Button } from 'element-ui'
   export default{
     name:'order-list',
     components:{
       OrderHeader,
       Loading,
       NoData,
-      [Pagination.name]:Pagination
+      [Pagination.name]:Pagination,
+      [Button.name]:Button
     },
     data(){
       return {
-        loading:true,
+        loading:false,
         list:[],
         pageSize:10,
         pageNum:1,
@@ -88,13 +93,15 @@
     },
     methods:{
       getOrderList(){
+        this.loading = true;
         this.axios.get('/orders',{
           params:{
+            pageSize:10,
             pageNum:this.pageNum
           }
         }).then((res)=>{
           this.loading = false;
-          this.list = res.list;
+          this.list = this.list.concat(res.list);
           this.total = res.total;
         }).catch(()=>{
           this.loading = false;
@@ -118,6 +125,10 @@
       },
       handleChange(pageNum){
         this.pageNum = pageNum;
+        this.getOrderList();
+      },
+      loadMore(){
+        this.pageNum++;
         this.getOrderList();
       }
     }
@@ -190,7 +201,13 @@
         }
         .el-pagination.is-background .el-pager li:not(.disabled).active{
           background-color: #FF6600;
-          color: #FFF;
+        }
+        .el-button--primary{
+          background-color: #FF6600;
+          border-color: #FF6600;
+        }
+        .load-more{
+          text-align:center;
         }
       }
     }
