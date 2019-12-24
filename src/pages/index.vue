@@ -219,8 +219,6 @@
         }).then((res)=>{
           this.showModal = true;
           this.$store.dispatch('saveCartCount',res.cartTotalQuantity);
-        }).catch(()=>{
-          this.showModal = true;
         });
       },
       goToCart(){
